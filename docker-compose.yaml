@@ -1,0 +1,8 @@
+
+
+services:
+  thesis-api: 
+    build:
+      context: .
+    ports:
+      - '5001:5001'

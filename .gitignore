@@ -159,7 +159,10 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-models/
+
 photos/
 post_images_sandbox/
 temp/*.jpg
+
+run_meter/
+run_number/

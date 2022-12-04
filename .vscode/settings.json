@@ -1,6 +1,10 @@
 {
   "cSpell.words": [
+    "imread",
+    "imwrite",
     "jsonify",
-    "pyfile"
+    "pyfile",
+    "superres",
+    "xyxy"
   ]
 }

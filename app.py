@@ -1,15 +1,14 @@
 
 
 from flask import Flask, jsonify, render_template, request, send_file
-import json
 import os
-import glob
 from prediction import *
 
 ##### Init #####
 app = Flask(__name__)
 VERSION = '0.0.1'
 number_model, meter_model, lapsrn_model = initialize_models()
+
 
 ##### Routes #####
 
@@ -31,7 +30,7 @@ def detection():
     if url:
         json, data, ts = my_detection(
             url, meter_model, number_model, lapsrn_model)
-        return jsonify({'results': json, 'number': data, 'result_image': {'meter': request.url_root + "/view/meter/"+ts, 'number': request.url_root+"/view/number/"+ts}})
+        return jsonify({'results': json, 'number': data, 'result_image': {'meter': request.url_root + "view/meter/"+ts, 'number': request.url_root+"view/number/"+ts}})
     return jsonify({'error': 'url param is null'})
 
 

@@ -59,7 +59,7 @@ def my_detection(img, meter_model, number_model, lapsrn_model):
     print("👌 start: ", img)
 
     curr_dt = datetime.now()
-    ts = str(int(round(curr_dt.timestamp())))
+    ts = 'photo'+str(int(round(curr_dt.timestamp())))
 
     meter_dir = meter_detection(img, ts, meter_model)
     meter_my_check_dir = my_check(meter_dir)

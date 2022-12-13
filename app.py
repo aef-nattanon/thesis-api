@@ -25,22 +25,25 @@ def version():
 
 @app.route('/detection', methods=['GET', 'POST'])
 def detection():
-    if request.method == 'POST':
-        request_data = request.get_json()
+    try:
+        if request.method == 'POST':
+            request_data = request.get_json()
 
-        url = request_data['url']
-        print('22222', request_data, url)
-    elif request.method == 'GET':
-        args = request.args
-        url = args.get('url')
-    else:
-        return jsonify({'error': 'error methods'})
+            url = request_data['url']
+            print('22222', request_data, url)
+        elif request.method == 'GET':
+            args = request.args
+            url = args.get('url')
+        else:
+            return jsonify({'error': 'error methods'})
 
-    if url:
-        json, data, ts = my_detection(
-            url, meter_model, number_model, lapsrn_model)
-        return jsonify({'results': json, 'number': data, 'result_image': {'meter': request.url_root + "view/meter/"+ts, 'number': request.url_root+"view/number/"+ts}})
-    return jsonify({'error': 'url param is null'})
+        if url:
+            json, data, ts = my_detection(
+                url, meter_model, number_model, lapsrn_model)
+            return jsonify({'results': json, 'number': data, 'result_image': {'meter': request.url_root + "view/meter/"+ts, 'number': request.url_root+"view/number/"+ts}})
+        return jsonify({'error': 'url param is null'})
+    except NameError:
+        return jsonify({'error': NameError})
 
 
 @ app.route('/view/meter/<id>')

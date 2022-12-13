@@ -32,7 +32,7 @@ def my_check(img):
 
 
 def number_detection(img, dri, number_model):
-    save_dir = './run_number/'+dri
+    save_dir = 'run_number/'+dri
     results = number_model(img)
     results.crop(save_dir=save_dir, save=True)
     results.save(save_dir=save_dir+'/result')
@@ -45,7 +45,7 @@ def number_detection(img, dri, number_model):
 
 
 def meter_detection(img, dri, meter_model):
-    save_dir = './run_meter/'+dri
+    save_dir = 'run_meter/'+dri
     # meter_model.conf = 0.70  # NMS confidence threshold
 
     # Inference

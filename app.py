@@ -23,10 +23,19 @@ def version():
     return jsonify({'version': VERSION})
 
 
-@app.route('/detection', methods=['GET'])
+@app.route('/detection', methods=['GET', 'POST'])
 def detection():
-    args = request.args
-    url = args.get('url')
+    if request.method == 'POST':
+        request_data = request.get_json()
+
+        url = request_data['url']
+        print('22222', request_data, url)
+    elif request.method == 'GET':
+        args = request.args
+        url = args.get('url')
+    else:
+        return jsonify({'error': 'error methods'})
+
     if url:
         json, data, ts = my_detection(
             url, meter_model, number_model, lapsrn_model)
@@ -34,7 +43,7 @@ def detection():
     return jsonify({'error': 'url param is null'})
 
 
-@app.route('/view/meter/<id>')
+@ app.route('/view/meter/<id>')
 def view_meter(id=None):
     try:
         dir = "./run_meter/"+id+"/result/"
@@ -44,7 +53,7 @@ def view_meter(id=None):
         return jsonify({'error': 'not found image'})
 
 
-@app.route('/view/number/<id>')
+@ app.route('/view/number/<id>')
 def view_number(id=None):
     try:
         dir = "./run_number/"+id+"/result/"

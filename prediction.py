@@ -35,7 +35,7 @@ def number_detection(img, dri, number_model):
     save_dir = './run_number/'+dri
     results = number_model(img)
     results.crop(save_dir=save_dir, save=True)
-    results.save(save_dir=save_dir+'/result')
+    # results.save(save_dir=save_dir+'/result')
 
     # print("crop: ", crop)
     data_0 = results.pandas().xyxy[0].sort_values(by=['xmin', 'ymin'])
@@ -51,7 +51,7 @@ def meter_detection(img, dri, meter_model):
     # Inference
     results = meter_model(img)
     results.crop(save_dir=save_dir, save=True)
-    results.save(save_dir=save_dir+'/result')
+    # results.save(save_dir=save_dir+'/result')
     return save_dir+'/crops/meter number/'+Path(img).stem+'.jpg'
 
 

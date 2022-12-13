@@ -53,21 +53,21 @@ def detection():
 @ app.route('/view/meter/<id>')
 def view_meter(id=None):
     try:
-        dir = "./run_meter/"+id+"/result/"
+        dir = os.getcwd()+"/run_meter/"+id+"/result/"
         images = os.listdir(dir)
         return send_file(dir+images[0], mimetype='image/jpg')
-    except:
-        return jsonify({'error': 'not found image'})
+    except NameError:
+        return jsonify({'error': NameError})
 
 
 @ app.route('/view/number/<id>')
 def view_number(id=None):
     try:
-        dir = "./run_number/"+id+"/result/"
+        dir = os.getcwd()+"/run_number/"+id+"/result/"
         images = os.listdir(dir)
         return send_file(dir+images[0], mimetype='image/jpg')
-    except:
-        return jsonify({'error': 'not found image'})
+    except NameError:
+        return jsonify({'error': NameError})
 
 
 if __name__ == '__main__':

@@ -6,6 +6,8 @@ import numpy as np
 import time
 import json
 
+from datetime import datetime
+
 
 def super_resolution(img, lapsrn_model):
     frame = cv.imread(img)
@@ -55,7 +57,9 @@ def meter_detection(img, dri, meter_model):
 
 def my_detection(img, meter_model, number_model, lapsrn_model):
     print("👌 start: ", img)
-    ts = str(time.time())
+
+    curr_dt = datetime.now()
+    ts = str(int(round(curr_dt.timestamp())))
 
     meter_dir = meter_detection(img, ts, meter_model)
     meter_my_check_dir = my_check(meter_dir)

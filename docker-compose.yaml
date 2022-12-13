@@ -4,3 +4,6 @@ services:
       context: .
     ports:
       - '5001:5001'
+    volumes:
+      - ./run_meter:/app/run_meter
+      - ./run_number:/app/run_number

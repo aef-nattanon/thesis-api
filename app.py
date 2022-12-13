@@ -53,7 +53,7 @@ def detection():
 @ app.route('/view/meter/<id>')
 def view_meter(id=None):
     try:
-        dir = "/app/run_meter/"+id+"/result/"
+        dir = "./run_meter/"+id+"/result/"
         images = os.listdir(dir)
         return send_file(dir+images[0], mimetype='image/jpg')
     except:
@@ -63,7 +63,7 @@ def view_meter(id=None):
 @ app.route('/view/number/<id>')
 def view_number(id=None):
     try:
-        dir = "/app/run_number/"+id+"/result/"
+        dir = "./run_number/"+id+"/result/"
         images = os.listdir(dir)
         return send_file(dir+images[0], mimetype='image/jpg')
     except:

@@ -1,11 +1,13 @@
 
 
 from flask import Flask, jsonify, render_template, request, send_file
+from flask_cors import CORS
 import os
 from prediction import *
 
 ##### Init #####
 app = Flask(__name__)
+CORS(app)
 VERSION = '0.0.1'
 number_model, meter_model, lapsrn_model = initialize_models()
 

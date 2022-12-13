@@ -25,21 +25,25 @@ def version():
 
 @app.route('/detection', methods=['GET', 'POST'])
 def detection():
+    print("in----")
     try:
         if request.method == 'POST':
+            print("POST----")
             request_data = request.get_json()
-
             url = request_data['url']
-            print('22222', request_data, url)
         elif request.method == 'GET':
+            print("GET----")
             args = request.args
             url = args.get('url')
         else:
             return jsonify({'error': 'error methods'})
 
+        print("url----", url)
         if url:
             json, data, ts = my_detection(
                 url, meter_model, number_model, lapsrn_model)
+
+            print("json----", json)
             return jsonify({'results': json, 'number': data, 'result_image': {'meter': request.url_root + "view/meter/"+ts, 'number': request.url_root+"view/number/"+ts}})
         return jsonify({'error': 'url param is null'})
     except NameError:

@@ -73,7 +73,7 @@ def my_detection(img, meter_model, number_model, lapsrn_model):
 def initialize_models():
     # number_model
     number_model = torch.hub.load(
-        'ultralytics/yolov5', 'custom', path='./models/best-number-grayscale-to-negative-3.pt')
+        'ultralytics/yolov5', 'custom', path='./models/best-number-grayscale-to-negative.pt')
     # meter_model
     meter_model = torch.hub.load(
         'ultralytics/yolov5', 'custom', path='./models/best-meter.pt')

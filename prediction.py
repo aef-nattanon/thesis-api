@@ -81,6 +81,9 @@ def initialize_models():
     lapsrn_model = cv.dnn_superres.DnnSuperResImpl_create()
     lapsrn_model.readModel("./models/LapSRN_x4.pb")
     lapsrn_model.setModel("lapsrn", 4)
+    # set confidence value
+    number_model.conf = 0.6
+
     return number_model, meter_model, lapsrn_model
 
 

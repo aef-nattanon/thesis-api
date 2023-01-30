@@ -58,9 +58,9 @@ def meter_detection(img, dri, meter_model):
 def my_detection(img, meter_model, number_model, lapsrn_model):
     print("👌 start: ", img)
 
-    curr_dt = datetime.now()
-    ts = str(int(round(curr_dt.timestamp())))
-
+    # curr_dt = datetime.now()
+    # ts = str(int(round(curr_dt.timestamp())))
+    ts = '1'
     meter_dir = meter_detection(img, ts, meter_model)
     meter_my_check_dir = my_check(meter_dir)
     meter_my_check_dir = super_resolution(meter_dir, lapsrn_model)
@@ -83,6 +83,7 @@ def initialize_models():
     lapsrn_model.setModel("lapsrn", 4)
     # set confidence value
     number_model.conf = 0.6
+    meter_model.conf = 0.6
 
     return number_model, meter_model, lapsrn_model
 

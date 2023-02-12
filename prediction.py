@@ -83,7 +83,7 @@ def initialize_models():
     lapsrn_model.setModel("lapsrn", 4)
     # set confidence value
     number_model.conf = 0.70
-    meter_model.conf = 0.6
+    meter_model.conf = 0.50
 
     return number_model, meter_model, lapsrn_model
 

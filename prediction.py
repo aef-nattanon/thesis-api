@@ -50,8 +50,13 @@ def meter_detection(img, dri, meter_model):
 
     # Inference
     results = meter_model(img)
+    print('------', results.pandas().xyxy[0])
     results.crop(save_dir=save_dir, save=True)
-    results.save(save_dir=save_dir+'/result')
+    # results.save(save_dir=save_dir+'/result')
+    # print('----results---', results) 
+
+    # data_0 = results.pandas()
+    # print('----data_0---', data_0)
     return save_dir+'/crops/meter number/'+Path(img).stem+'.jpg'
 
 
@@ -77,15 +82,18 @@ def initialize_models():
     # meter_model
     meter_model = torch.hub.load(
         'ultralytics/yolov5', 'custom', path='./models/best-meter.pt')
+    meter_seg_model = torch.hub.load(
+        'ultralytics/yolov5', 'custom', path='./models/best-seg.pt')
     # lapsrn_model
     lapsrn_model = cv.dnn_superres.DnnSuperResImpl_create()
     lapsrn_model.readModel("./models/LapSRN_x4.pb")
     lapsrn_model.setModel("lapsrn", 4)
     # set confidence value
     number_model.conf = 0.70
-    meter_model.conf = 0.50
+    # meter_model.conf = 0.30
+    # meter_seg_model.conf = 0.50
 
-    return number_model, meter_model, lapsrn_model
+    return number_model, meter_seg_model, lapsrn_model
 
 
 if __name__ == "__main__":

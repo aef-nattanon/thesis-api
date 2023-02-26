@@ -93,7 +93,7 @@ def initialize_models():
     # meter_model.conf = 0.30
     # meter_seg_model.conf = 0.50
 
-    return number_model, number_model, lapsrn_model
+    return number_model, meter_model, lapsrn_model
 
 
 if __name__ == "__main__":

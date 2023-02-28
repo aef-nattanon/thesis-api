@@ -87,7 +87,7 @@ fetch("http://127.0.0.1:5000/detection", requestOptions)
 
 ```
 
-**result**
+### result
 
 ```json
 {

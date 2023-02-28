@@ -13,7 +13,7 @@ opencv-contrib-python>=4.6.0
 
 # Base ------------------------------------------------------------------------
 gitpython
-ipython  # interactive notebook
+ipython # interactive notebook
 matplotlib>=3.2.2
 # numpy>=1.18.5
 # opencv-python>=4.1.1
@@ -36,3 +36,7 @@ tensorboard>=2.4.1
 # Plotting --------------------------------------------------------------------
 # pandas>=1.1.4
 seaborn>=0.11.0
+
+
+# hough_transform --------------------------------------------------------------------
+scikit-image

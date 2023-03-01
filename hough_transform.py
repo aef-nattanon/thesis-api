@@ -33,11 +33,8 @@ def findTiltAngle(image_edges):
   angle = np.rad2deg(mode(angles, keepdims=True)[0][0])
   
   if (angle < 0):
-    
     return angle + 90
-    
   else:
-    
     return angle - 90
 
 def rotateImage(RGB_image, angle):
@@ -55,7 +52,7 @@ def generalPipeline(img, is_save=False):
     fixed_image = rotateImage(image, angle)
     # =============================================================================
     if is_save:
-      io.imsave( img,fixed_image)
+      io.imsave(img, (fixed_image*255).astype(np.uint8))
     else:
       plt.imshow(fixed_image)
       plt.axis('off')

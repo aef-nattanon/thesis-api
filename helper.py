@@ -24,6 +24,6 @@ MODEL_2_NAME = "model 2"
 
 
 def remove_file(ts):
-  print(f"Removing {ts}", './run_meter/'+ts)
+  print(f"␡ Removing {ts}", './run_meter/'+ts)
   shutil.rmtree(f"./run_meter/{ts}")
   shutil.rmtree(f"./run_number/{ts}")

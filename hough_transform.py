@@ -30,39 +30,15 @@ def findTiltAngle(image_edges):
   
   h, theta, d = hough_line(image_edges)
   accum, angles, dists = hough_line_peaks(h, theta, d)
-  angle = np.rad2deg(mode(angles)[0][0])
+  angle = np.rad2deg(mode(angles, keepdims=True)[0][0])
   
   if (angle < 0):
     
-    r_angle = angle + 90
+    return angle + 90
     
   else:
     
-    r_angle = angle - 90
-
-  # Plot Image and Lines    
-  # fig, ax = plt.subplots()
-  
-
-  # ax.imshow(image_edges, cmap='gray')
-
-  # origin = np.array((0, image_edges.shape[1]))
-
-  # for _, angle, dist in zip(*hough_line_peaks(h, theta, d)):
-
-  #   y0, y1 = (dist - origin * np.cos(angle)) / np.sin(angle)
-    # ax.plot(origin, (y0, y1), '-r')
-
-  # ax.set_xlim(origin)
-  # ax.set_ylim((image_edges.shape[0], 0))
-  # ax.set_axis_off()
-  # ax.set_title('Detected lines')
-
-  # plt.savefig('/content/drive/My Drive/hough_lines.png')
-
-  # plt.show()
-    
-  return r_angle
+    return angle - 90
 
 def rotateImage(RGB_image, angle):
 

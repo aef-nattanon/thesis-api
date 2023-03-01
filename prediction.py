@@ -5,6 +5,7 @@ from pathlib import Path
 import numpy as np
 import time
 import json
+import ntpath
 from helper import *
 from hough_transform import *
 
@@ -52,15 +53,15 @@ def my_check(img):
     return img
 
 
-def number_detection(img, dri, number_model):
+def number_detection(img, dri, number_model, file_name):
     save_dir = f"./run_number/{dri}"
     results = number_model(img)
     # results.crop(save_dir=save_dir, save=True)
     results.save(save_dir=save_dir+'/result')
     data_0 = results.pandas().xyxy[0].sort_values(by=['xmin', 'ymin'])
-    print("results: ", results)
-    print("pandas: ", data_0)
-    return data_0.to_json(orient="records"), data_0.loc[:, "name"].tolist()
+    # print("🤖 results: ", results)
+    print("📦 pandas: ", data_0)
+    return data_0.to_json(orient="records"), data_0.loc[:, "name"].tolist(), f"{save_dir}/result/{file_name}"
 
 
 def meter_detection(img, dri, meter_model):
@@ -69,13 +70,13 @@ def meter_detection(img, dri, meter_model):
 
     # Inference
     results = meter_model(img)
-    # print('------', results.pandas().xyxy[0])
+    # print('🐞 ---results.pandas().xyxy[0]---', results.pandas().xyxy[0])
     results.crop(save_dir=save_dir, save=True)
     # results.save(save_dir=save_dir+'/result')
-    # print('----results---', results) 
+    # print('🐞 ---results---', results) 
 
     data_0 = results.pandas().xyxy[0]
-    print('----data_0---', data_0) 
+    # print('🐞 ---data_0---', data_0) 
     data_class = data_0.iloc[0]['class']
     data_name = data_0.iloc[0]['name']
     return save_dir+'/crops/'+data_0.iloc[0]['name']+'/'+Path(img).stem+'.jpg', data_class, data_name
@@ -94,10 +95,11 @@ def my_detection(img, meter_model, number_model, lapsrn_model):
     # fixed_image = my_bitwise_not_by_image(fixed_image, data_class, data_name)
     meter_my_check_dir = super_resolution_by_image(meter_dir, fixed_image, lapsrn_model)
 
-    r_json, data = number_detection(meter_my_check_dir, ts, number_model)
-    print("results json: ", json)
+    file_name = ntpath.basename(meter_my_check_dir)
+    r_json, data, number_path = number_detection(meter_my_check_dir, ts, number_model, file_name)
+    # print("📜 results json: ", r_json)
     print("✅❌ result data: ", data)
-    return json.loads(r_json), data, ts
+    return json.loads(r_json), data, ts, meter_my_check_dir, number_path
 
 
 def initialize_models():
